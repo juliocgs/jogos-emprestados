@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Lista de Empréstimos";
+}
+@Html.ActionLink("Emprestar Jogo", "Create", null, new { @class = "btn btn-primary btn-xs" })
+<table id="tblBorrowings" class="table table-bordered table-hover"></table>
+
+@section css{
+    @Styles.Render("~/bundles/styles/datatable")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/scripts/datatable")
+    @Scripts.Render("~/Views/Borrowing/Index.js")
+}

@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Lista de Amigos";
+}
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+@Html.ActionLink("Cadastrar Novo Amigo", "Create", null, new { @class = "btn btn-primary btn-xs" })
+<table id="tblFriends" class="table table-bordered table-hover"></table>
+
+@section css{
+    @Styles.Render("~/bundles/styles/datatable")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/scripts/datatable")
+    @Scripts.Render("~/Views/Friend/Index.js")
+}

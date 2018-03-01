@@ -1,0 +1,54 @@
+﻿@model Application.Models.FriendViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div>
+    @Html.HiddenFor(model => model.Id)
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NickName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NickName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+    </dl>
+</div>
+<h3>Jogos que @Model.Name já emprestou</h3>
+<table id="tblBorrowings" class="table table-bordered table-hover"></table>
+
+@section css{
+    @Styles.Render("~/bundles/styles/datatable")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/scripts/datatable")
+    @Scripts.Render("~/Views/Friend/Detail.js")
+}

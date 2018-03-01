@@ -1,0 +1,40 @@
+﻿@model Application.Models.GameViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-xs" })
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary btn-xs" })
+</p>
+<table id="tblPessoas" class="table table-bordered table-hover"></table>
+
+@section css{
+    @Styles.Render("~/bundles/styles/datatable")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/scripts/datatable")
+    @*@Scripts.Render("~/Views/Game/Index.js")*@
+}

@@ -1,0 +1,94 @@
+﻿@using Infra.Resources
+@using Application.Models
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/styles/bootstrap")
+    @RenderSection("css", required: false)
+    @Styles.Render("~/bundles/styles/custom")
+</head>
+<body>
+    <div class="container-fluid">
+        <section class="row">
+            <aside class="col-md-3 side-menu">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        @{
+                            var user = Session[Constants.USER_LOGIN_KEY] as UserViewModel;
+                        }
+                        Bem vindo, <strong>@user.UserName.</strong>
+                        @if (user.LastLogin.HasValue)
+                        {
+                            <p>Último acesso: @user.LastLogin.Value.ToString("dd/MM/yyyy HH:mm:ss")</p>
+                        }
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li role="presentation" class="@Html.IsSelected("Index", "Home")">
+                                <a href="@Url.Action("Index", "Home")">
+                                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                                    Home
+                                </a>
+                            </li>
+                            <li role="presentation" class="@Html.IsSelected("Index,Edit,Create,Detail,Delete", "Friend")">
+                                <a href="@Url.Action("Index", "Friend")">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    Amigos
+                                </a>
+                            </li>
+                            <li role="presentation" class="@Html.IsSelected("Index,Edit,Create,Detail,Delete", "Game")">
+                                <a href="@Url.Action("Index", "Game")">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                    Jogos
+                                </a>
+                            </li>
+                            <li role="presentation" class="@Html.IsSelected("Index,Edit,Create,Detail,Delete", "Borrowing")">
+                                <a href="@Url.Action("Index", "Borrowing")">
+                                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                                    Empréstimos
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="@Url.Action("Logout", "Account")">
+                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                    Sair
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <footer class="text-center">
+                    Gerenciador de jogos emprestados - @DateTime.Now.Year
+                </footer>
+            </aside>
+            <div class="col-md-9 col-md-offset-3 col-xs-offset-0">
+                <div class="page-header">
+                    <h1>@ViewBag.Title</h1>
+                </div>
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        @TempData["success"].ToString()
+                    </div>
+                }
+                @RenderBody()
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript">
+        var ROOT_URL = '@String.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"))';
+    </script>
+    @Scripts.Render("~/bundles/scripts/jquery")
+    @Scripts.Render("~/bundles/scripts/bootstrap")
+    @Scripts.Render("~/bundles/scripts/custom")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

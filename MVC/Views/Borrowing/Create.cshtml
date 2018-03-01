@@ -1,0 +1,38 @@
+﻿@model Application.Models.BorrowingViewModel
+@using Application.Models
+
+@{
+    ViewBag.Title = "Emprestar Jogo";
+}
+
+@using (Html.BeginForm("Create", "Borrowing", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Amigo", htmlAttributes: new { @class = "control-label col-md-2", @for= "Friend_Id" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Friend.Id, new SelectList((ViewData["borrowing.friends"] as IList<FriendViewModel>), "Id", "Name"), "Selecione", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Jogo", htmlAttributes: new { @class = "control-label col-md-2", @for = "Game_Id" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Game.Id, new SelectList((ViewData["borrowing.games"] as IList<GameViewModel>), "Id", "Name"), "Selecione", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Emprestar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-primary btn-xs" })
+</div>

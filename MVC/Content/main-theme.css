@@ -1,0 +1,45 @@
+﻿body {
+    background: #F4F3EF;
+    color: #777;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000;
+    text-transform: uppercase;
+}
+
+.jumbotron{
+    background: #FFF;
+}
+
+.login .jumbotron{
+    margin-top: 15%;
+}
+
+.side-menu {
+    position: fixed;
+    min-height: 100%;
+    padding-top: 15px;
+    background: #FFF;
+    z-index: 0;
+}
+
+    .side-menu footer{
+        position: absolute;
+        bottom: 15px;
+        width: 100%;
+        left: 0;
+    }
+
+.dataTable tbody tr{
+    background-color: #FFF;
+}
+
+.dataTable thead tr {
+    background-color: #353535;
+    color: #FFF;
+}
+
+.dataTable thead th {
+    border-color: #252525 !important;
+}
