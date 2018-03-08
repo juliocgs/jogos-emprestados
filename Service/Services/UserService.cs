@@ -39,7 +39,10 @@ namespace Service.Services
             {
                 _userRepository.BeginTransaction();
                 var userEntity = _userRepository.GetByUserName(user.UserName);
-                userEntity.LastLogin = user.LastLogin = DateTime.Now;
+
+                user.LastLogin = userEntity.LastLogin;
+                userEntity.LastLogin = DateTime.Now;
+
                 _userRepository.Update(userEntity);
                 _userRepository.Commit();
             }
